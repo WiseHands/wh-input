@@ -32,7 +32,7 @@ export class WhInput extends LitElement {
         }
       .fieldInput {
         box-sizing: border-box;
-        padding: 0px 12px;
+        padding: 0 9px;
         width: 100%;
         height: 56px;
         background: #fff;
@@ -58,6 +58,16 @@ export class WhInput extends LitElement {
           color: white;
           border: 1px solid #b3b3b3;
         }
+        .fieldInput:focus {
+          outline: none;
+          border: 1px solid #bb86fc;
+        }
+        .fieldInput:not(:focus):hover {
+          border: 1px solid white;
+        }
+        .fieldInput:disabled {
+          background-color: #313131;
+        }
       }
       .fieldInputLabel {
         z-index: 2;
@@ -82,10 +92,11 @@ export class WhInput extends LitElement {
         .fieldInputLabel {
           background-color: #202020;
           color: #b3b3b3;
+        }
       }
       @media (prefers-color-scheme: dark) {
-        .fieldInput:not(:focus):hover {
-          border: 1px solid white;
+        .fieldInput:focus ~ .fieldInputLabel {
+          color: #bb86fc;
         }
       }
       .fieldInput:focus ~ .fieldInputLabel,

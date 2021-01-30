@@ -52,13 +52,13 @@ export class WhInput extends LitElement {
         color: #6200ee;
         font-weight: 500;
       }
-      /* @media (prefers-color-scheme: dark) {
+      @media (prefers-color-scheme: dark) {
         .fieldInput {
-          background-color: #333;
+          background-color: #202020;
           color: white;
-          border: 1px solid #444;
+          border: 1px solid #b3b3b3;
         }
-      } */
+      }
       .fieldInputLabel {
         z-index: 2;
         position: absolute;
@@ -78,15 +78,21 @@ export class WhInput extends LitElement {
         color: rgba(0,0,0,.6);
         padding: 0 4px;
       }
-      /* @media (prefers-color-scheme: dark) {
+      @media (prefers-color-scheme: dark) {
         .fieldInputLabel {
-          background-color: #333;
-          color: white;
-      } */
+          background-color: #202020;
+          color: #b3b3b3;
+      }
+      @media (prefers-color-scheme: dark) {
+        .fieldInput:not(:focus):hover {
+          border: 1px solid white;
+        }
+      }
       .fieldInput:focus ~ .fieldInputLabel,
       .fieldInput:not(:placeholder-shown) ~ .fieldInputLabel {
         transform: translate(4px, -27px);
         font-size: 12px;
+        font-weight: 500;
       }
       .inputContainer {
         position: relative;
@@ -118,9 +124,6 @@ export class WhInput extends LitElement {
     if (this.value == undefined) {
       this.value = '';
     }
-
-    this.name = 'Input';
-    this.count = 0;
   }
 
   render() {
@@ -128,8 +131,8 @@ export class WhInput extends LitElement {
       <div class="inputContainer">
         <input .value=${this.value} @input=${(e) => {
         this.value = e.target.value;
-        this.dispatchEvent(new Event('input'));
-      }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput" name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
+        this.event();
+        }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput" name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
         <label class="fieldInputLabel" for=${this.name}>
           <slot></slot>
         </label>
@@ -137,8 +140,8 @@ export class WhInput extends LitElement {
     `;
   }
 
-  _onClick() {
-    this.count++;
+  event() {
+    console.log(this.value);
   }
 }
 

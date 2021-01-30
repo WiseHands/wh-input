@@ -27,9 +27,16 @@ export class WhInput extends LitElement {
         display: block;
         padding: 8px 0;
       }
+      :host([disabled]) .fieldInputLabel {
+        background-color: transparent;
+      }
       * {
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        }
+      }
+      .inputContainer {
+        position: relative;
+        margin-top: 12px;
+      }
       .fieldInput {
         box-sizing: border-box;
         padding: 0 9px;
@@ -49,7 +56,7 @@ export class WhInput extends LitElement {
         border: 2px solid #6200ee;
       }
       .fieldInput:not(:focus):hover:not(:disabled) {
-        border: 2px solid #bdbdbd;
+        border: 1px solid #000000de;
       }
       .fieldInput:focus ~ .fieldInputLabel {
         color: #6200ee;
@@ -70,7 +77,7 @@ export class WhInput extends LitElement {
           border: 2px solid #bb86fc;
         }
         .fieldInput:not(:focus):hover:not(:disabled) {
-          border: 2px solid white;
+          border: 1px solid white;
         }
         .fieldInput:disabled {
           color: #b3b3b3;
@@ -96,6 +103,12 @@ export class WhInput extends LitElement {
         color: #8a8a8a;
         padding: 0 4px;
       }
+      .fieldInput:focus ~ .fieldInputLabel,
+      .fieldInput:not(:placeholder-shown) ~ .fieldInputLabel {
+        transform: translate(4px, -27px);
+        font-size: 12px;
+        font-weight: 500;
+      }
       @media (prefers-color-scheme: dark) {
         .fieldInputLabel {
           background-color: #202020;
@@ -107,16 +120,6 @@ export class WhInput extends LitElement {
           color: #bb86fc;
         }
       }
-      .fieldInput:focus ~ .fieldInputLabel,
-      .fieldInput:not(:placeholder-shown) ~ .fieldInputLabel {
-        transform: translate(4px, -27px);
-        font-size: 12px;
-        font-weight: 500;
-      }
-      .inputContainer {
-        position: relative;
-        margin-top: 12px;
-      }
     `;
   }
 
@@ -126,7 +129,8 @@ export class WhInput extends LitElement {
       count: { type: Number },
       autocomplete: { type: String },
       type: { type: String },
-      value: { type: String }
+      value: { type: String },
+      disabled: { type: Boolean, reflect:true }
     };
   }
 
@@ -136,6 +140,7 @@ export class WhInput extends LitElement {
       this.value = '';
     }
     this.name = 'input';
+    // this.disabled = true;
   }
 
   render() {
@@ -144,7 +149,8 @@ export class WhInput extends LitElement {
         <input .value=${this.value} @input=${(e) => {
         this.value = e.target.value;
         this.event();
-        }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput" name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
+        }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput"
+          name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
         <label class="fieldInputLabel" for=${this.name}>
           <slot></slot>
         </label>
@@ -154,6 +160,7 @@ export class WhInput extends LitElement {
 
   event() {
     console.log(this.value);
+
   }
 }
 

@@ -2,8 +2,8 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "my-element",
-      "path": "./my-element.js",
+      "name": "wh-input",
+      "path": "./wh-input.js",
       "description": "An example element.",
       "attributes": [
         {
@@ -49,8 +49,8 @@
       ]
     },
     {
-      "name": "my-element",
-      "path": "./docs-/my-element.bundled.js",
+      "name": "wh-input",
+      "path": "./docs-/wh-input.bundled.js",
       "attributes": [
         {
           "name": "name",

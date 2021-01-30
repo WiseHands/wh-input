@@ -46,11 +46,18 @@ export class WhInput extends LitElement {
       }
       .fieldInput:focus {
         outline: none;
-        border: 1px solid #6200ee;
+        border: 2px solid #6200ee;
+      }
+      .fieldInput:not(:focus):hover:not(:disabled) {
+        border: 2px solid #bdbdbd;
       }
       .fieldInput:focus ~ .fieldInputLabel {
         color: #6200ee;
         font-weight: 500;
+      }
+      .fieldInput:disabled {
+        color: #8a8a8a;
+        background-color: #e6e6e6;
       }
       @media (prefers-color-scheme: dark) {
         .fieldInput {
@@ -60,12 +67,13 @@ export class WhInput extends LitElement {
         }
         .fieldInput:focus {
           outline: none;
-          border: 1px solid #bb86fc;
+          border: 2px solid #bb86fc;
         }
-        .fieldInput:not(:focus):hover {
-          border: 1px solid white;
+        .fieldInput:not(:focus):hover:not(:disabled) {
+          border: 2px solid white;
         }
         .fieldInput:disabled {
+          color: #b3b3b3;
           background-color: #313131;
         }
       }
@@ -85,7 +93,7 @@ export class WhInput extends LitElement {
       .fieldInputLabel supports:placeholder-shown {
         transform: translate(0px, 0px);
         font-size: 1rem;
-        color: rgba(0,0,0,.6);
+        color: #8a8a8a;
         padding: 0 4px;
       }
       @media (prefers-color-scheme: dark) {
@@ -114,16 +122,8 @@ export class WhInput extends LitElement {
 
   static get properties() {
     return {
-      /**
-       * The name to say "Hello" to.
-       */
       name: { type: String },
-
-      /**
-       * The number of times the button has been clicked.
-       */
       count: { type: Number },
-
       autocomplete: { type: String },
       type: { type: String },
       value: { type: String }
@@ -135,6 +135,7 @@ export class WhInput extends LitElement {
     if (this.value == undefined) {
       this.value = '';
     }
+    this.name = 'input';
   }
 
   render() {

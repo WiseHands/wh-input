@@ -35,11 +35,10 @@ export class WhInput extends LitElement {
       }
       .inputContainer {
         position: relative;
-        margin-top: 12px;
       }
       .fieldInput {
         box-sizing: border-box;
-        padding: 0 9px;
+        padding: 0 16px;
         width: 100%;
         height: 56px;
         background: #fff;
@@ -98,14 +97,14 @@ export class WhInput extends LitElement {
       }
       .fieldInputLabel,
       .fieldInputLabel supports:placeholder-shown {
-        transform: translate(0px, 0px);
+        transform: translate(16px, 0px);
         font-size: 1rem;
         color: #8a8a8a;
         padding: 0 4px;
       }
       .fieldInput:focus ~ .fieldInputLabel,
       .fieldInput:not(:placeholder-shown) ~ .fieldInputLabel {
-        transform: translate(4px, -27px);
+        transform: translate(16px, -27px);
         font-size: 12px;
         font-weight: 500;
       }
@@ -130,7 +129,7 @@ export class WhInput extends LitElement {
       autocomplete: { type: String },
       type: { type: String },
       value: { type: String },
-      disabled: { type: Boolean, reflect:true }
+      disabled: { type: Boolean, reflect: true }
     };
   }
 
@@ -140,16 +139,16 @@ export class WhInput extends LitElement {
       this.value = '';
     }
     this.name = 'input';
-    // this.disabled = true;
+    //this.disabled = true;
   }
 
   render() {
     return html`
       <div class="inputContainer">
-        <input .value=${this.value} @input=${(e) => {
+        <input value=${this.value} @input=${(e) => {
         this.value = e.target.value;
         this.event();
-        }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput"
+      }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput"
           name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
         <label class="fieldInputLabel" for=${this.name}>
           <slot></slot>

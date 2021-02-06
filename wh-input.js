@@ -139,7 +139,7 @@ export class WhInput extends LitElement {
       this.value = '';
     }
     this.name = 'input';
-    //this.disabled = true;
+    this.disabled = false;
   }
 
   render() {
@@ -149,7 +149,7 @@ export class WhInput extends LitElement {
         this.value = e.target.value;
         this.event();
       }} @change=${(e) => this.dispatchEvent(new Event('change'))} class="fieldInput"
-          name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}">
+          name=${this.name} id=${this.name} placeholder=" " type="${this.type}" autocomplete="${this.autocomplete}" ?disabled="${this.disabled}">
         <label class="fieldInputLabel" for=${this.name}>
           <slot></slot>
         </label>

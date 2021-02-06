@@ -86,7 +86,7 @@ export class WhInput extends LitElement {
       .fieldInputLabel {
         z-index: 2;
         position: absolute;
-        top: 18px;
+        top: 16px;
         left: 2px;
         color: #222;
         background: #fff;
@@ -104,7 +104,7 @@ export class WhInput extends LitElement {
       }
       .fieldInput:focus ~ .fieldInputLabel,
       .fieldInput:not(:placeholder-shown) ~ .fieldInputLabel {
-        transform: translate(16px, -27px);
+        transform: translate(16px, -25px);
         font-size: 12px;
         font-weight: 500;
       }
